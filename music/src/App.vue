@@ -1,0 +1,51 @@
+<template>
+  <div id="app">
+   
+    <router-view/>
+  </div>
+</template>
+
+<style>
+body{
+  padding: 0px;
+  margin: 0px;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
+
+
+<script>
+export default {
+     created(){
+    // this.$axios.get('/logout').then(res=>{
+    //   console.log(res)
+    // })
+
+    this.$axios.get('/login/status?timestamp='+Date.now()).then(res=>{
+      // console.log(res)
+      this.$router.push('/')
+    }).catch(err=>{
+      this.$router.push('/login')
+    })
+  },
+}
+</script>
